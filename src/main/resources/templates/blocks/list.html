@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<!-- Incluir sección head -->
+<th:block th:replace="~{fragments/header :: head('Listado de Bloques')}"></th:block>
+<body>
+<!-- Incluir navbar -->
+<th:block th:replace="~{fragments/header :: navbar}"></th:block>
+
+<div class="container">
+    <h2>Todos los Bloques</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th><th>Timestamp</th><th>Prev. Hash</th><th>Hash</th>
+            <th>Empresa</th><th>Monto</th><th>Tasa</th><th>Vencimiento</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${blocks}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.timestamp}"></td>
+            <td th:text="${b.previousHash}"></td>
+            <td th:text="${b.currentHash}"></td>
+            <td th:text="${b.companyName}"></td>
+            <td th:text="${b.amount}"></td>
+            <td th:text="${b.interestRate}"></td>
+            <td th:text="${b.dueDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Incluir footer scripts -->
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>
